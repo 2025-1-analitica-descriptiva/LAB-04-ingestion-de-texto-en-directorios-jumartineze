@@ -6,6 +6,11 @@ Escriba el codigo que ejecute la accion solicitada en cada pregunta.
 """
 
 
+from ._internals.load_input import load_input
+from ._internals.save_output import save_output
+from ._internals.unzip_file import unzip_file
+
+
 def pregunta_01():
     """
     La información requerida para este laboratio esta almacenada en el
@@ -68,6 +73,12 @@ def pregunta_01():
     |  3 | Both operating profit and net sales for the three-month period increased , respectively from EUR16 .0 m and EUR139m , as compared to the corresponding quarter in 2006 | positive |
     |  4 | Tampere Science Parks is a Finnish company that owns , leases and builds office properties and it specialises in facilities for technology-oriented businesses         | neutral  |
     ```
-
-
     """
+
+    unzip_file("files/input.zip")
+
+    train_sequence = load_input("files/input/train")
+    test_sequence = load_input("files/input/test")
+
+    save_output(train_sequence, "files/output", "train_dataset.csv")
+    save_output(test_sequence, "files/output", "test_dataset.csv")
